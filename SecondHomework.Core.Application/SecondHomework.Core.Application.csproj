@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SecondHomework.Core.Domain\SecondHomework.Core.Domain.csproj" />
+    <ProjectReference Include="..\SecondHomework.Infraestructure.Share\SecondHomework.Infraestructure.Share.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Interfaces\Contracts\" />
+    <Folder Include="Interfaces\Repositories\" />
+    <Folder Include="Core\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>

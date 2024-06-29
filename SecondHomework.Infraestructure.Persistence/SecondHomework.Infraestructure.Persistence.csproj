@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SecondHomework.Core.Application\SecondHomework.Core.Application.csproj" />
+    <ProjectReference Include="..\SecondHomework.Infraestructure.Share\SecondHomework.Infraestructure.Share.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="Core\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>
