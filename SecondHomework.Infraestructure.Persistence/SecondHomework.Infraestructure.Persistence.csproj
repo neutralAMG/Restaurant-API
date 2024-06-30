@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Context\" />
     <Folder Include="Core\" />
     <Folder Include="Repositories\" />
   </ItemGroup>

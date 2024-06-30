@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecondHomework.Core.Application.Dtos.Account
 {
-	public class AuthenticationResponce
+	public class AuthenticationResponse
 	{
 		public string Id { get; set; }
 		public string UserName { get; set; }

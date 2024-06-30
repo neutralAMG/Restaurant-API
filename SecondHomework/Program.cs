@@ -40,6 +40,7 @@ using(var scope = app.Services.CreateScope())
 		await DefaultRols.SeedAsync(userManager, roleManager);
 		await DefaultBasicUser.SeedAsync(userManager, roleManager);
 		await SuperAdminUser.SeedAsync(userManager, roleManager);
+		await DefaultAdminUser.SeedAsync(userManager, roleManager);
 	}catch{
 
 	}
