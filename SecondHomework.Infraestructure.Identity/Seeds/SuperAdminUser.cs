@@ -10,13 +10,17 @@ namespace SecondHomework.Infraestructure.Identity.Seeds
 	{
 		public static async Task SeedAsync(UserManager<AplicationUser> userManager, RoleManager<IdentityRole> roleManager)
 		{
-			AplicationUser DefaultUser = new();
-			DefaultUser.UserName = "SupperadminUserName";
-			DefaultUser.FirstName = "Joe";
-			DefaultUser.LastName = "Doe";
-			DefaultUser.Email = "UsersuperadminEmail@gmail.com";
-			DefaultUser.EmailConfirmed = true;
-			DefaultUser.PhoneNumberConfirmed = true;
+			AplicationUser DefaultUser = new()
+			{
+
+				UserName = "SupperadminUserName",
+				FirstName = "Joe",
+				LastName = "Doe",
+				Email = "UsersuperadminEmail@gmail.com",
+				EmailConfirmed = true,
+				PhoneNumberConfirmed = true,
+			};
+
 
 			if (userManager.Users.All(u => u.Id != DefaultUser.Id))
 			{

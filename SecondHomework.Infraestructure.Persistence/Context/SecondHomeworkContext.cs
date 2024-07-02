@@ -1,11 +1,24 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Infraestructure.Persistence.Context
 {
 	public class SecondHomeworkContext : DbContext
 	{
+
+		public DbSet<User> Users { get; set; }
+		public DbSet<Table> Tables { get; set; }
+		public DbSet<Order> Orders { get; set; }
+		public DbSet<Dish> Dishes { get; set; }
+		public DbSet<Ingredient> Ingredients { get; set; }
+
+		public DbSet<OrderDish> OrderDishes { get; set; }
+		public DbSet<DishIngridient> DishIngridients { get; set; }
+		public DbSet<TableState> TableStates { get; set; }
+		public DbSet<DishCategory> DishCategories { get; set; }
+
         public SecondHomeworkContext(DbContextOptions<SecondHomeworkContext> options) : base (options)
         {
             
