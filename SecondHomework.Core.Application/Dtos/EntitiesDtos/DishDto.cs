@@ -7,6 +7,7 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 	}
 	public record SaveDishDto
 	{
+		public Guid Id { get; set; }
 	}
 
 }

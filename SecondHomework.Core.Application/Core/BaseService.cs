@@ -86,7 +86,7 @@ namespace SecondHomework.Core.Application.Core
 			}
 		}
 
-		public virtual async Task<Result<TSaveDto>> Save(TSaveDto entity)
+		public virtual async Task<Result<TSaveDto>> SaveAsync(TSaveDto entity)
 		{
 			Result<TSaveDto> result = new();
 			try
@@ -127,7 +127,7 @@ namespace SecondHomework.Core.Application.Core
 			}
 		}
 
-		public virtual async Task<Result<TSaveDto>> Update(TSaveDto entity)
+		public virtual async Task<Result<TSaveDto>> UpdateAsync(TSaveDto entity)
 		{
 			Result<TSaveDto> result = new();
 			try
@@ -176,7 +176,7 @@ namespace SecondHomework.Core.Application.Core
 			}
 		}
 		
-		public virtual async Task<Result<TGetDto>> Delete(Guid id)
+		public virtual async Task<Result<TGetDto>> DeleteAsync(Guid id)
 		{
 			Result<TGetDto> result = new();
 			try
