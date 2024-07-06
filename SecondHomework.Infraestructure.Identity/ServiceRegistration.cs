@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SecondHomework.Core.Application.Interfaces.Contracts;
 using SecondHomework.Infraestructure.Identity.Context;
 using SecondHomework.Infraestructure.Identity.Entities;
+using SecondHomework.Infraestructure.Identity.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,12 @@ namespace SecondHomework.Infraestructure.Identity
 				.AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
 
 			services.AddAuthentication();
+
+			services.ConfigureApplicationCookie(options =>
+			{
+				options.LoginPath = "";
+			});
+			services.AddTransient<IAccountService, AccountService>();	
 		
 		}
 	}

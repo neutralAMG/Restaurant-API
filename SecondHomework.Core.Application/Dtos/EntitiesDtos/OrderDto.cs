@@ -2,7 +2,10 @@
 
 namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 {
-	public record  OrderDto
+	public record GetOrderDto
+	{
+	}
+	public record SaveOrderDto
 	{
 	}
 }

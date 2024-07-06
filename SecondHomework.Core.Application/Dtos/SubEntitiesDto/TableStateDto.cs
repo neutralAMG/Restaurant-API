@@ -2,7 +2,11 @@
 
 namespace SecondHomework.Core.Application.Dtos.SubEntitiesDto
 {
-	public record TableStateDto
+	public record GetTableStateDto
+	{
+	}
+
+	public record SaveTableStateDto
 	{
 	}
 }

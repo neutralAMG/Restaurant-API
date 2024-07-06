@@ -8,16 +8,16 @@ using SecondHomework.Infraestructure.Identity.Enums;
 
 namespace SecondHomework.Infraestructure.Identity.Services
 {
-	public class AccountService
+	public class AccountService : IAccountService
 	{
 		private readonly UserManager<AplicationUser> _userManager;
 		private readonly SignInManager<AplicationUser> _signInManager;
-		private readonly IEmailService _emailService;
-        public AccountService(UserManager<AplicationUser> userManager, SignInManager<AplicationUser> signInManager, IEmailService emailService )
+		
+        public AccountService(UserManager<AplicationUser> userManager, SignInManager<AplicationUser> signInManager)
         {
 			_userManager = userManager;
 			_signInManager = signInManager;
-			_emailService = emailService;
+		
 		}
 
 		public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request)

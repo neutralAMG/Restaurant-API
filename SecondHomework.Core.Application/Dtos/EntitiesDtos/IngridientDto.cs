@@ -2,7 +2,10 @@
 
 namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 {
-	public record IngridientDto
+	public record GetIngridientDto
+	{
+	}
+	public record SaveIngridientDto
 	{
 	}
 }

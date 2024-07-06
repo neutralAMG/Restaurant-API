@@ -2,7 +2,10 @@
 
 namespace SecondHomework.Core.Application.Dtos.SubEntitiesDto
 {
-	public record DishCategoryDto
+	public record GetDishCategoryDto
+	{
+	}
+	public record SaveDishCategoryDto
 	{
 	}
 }
