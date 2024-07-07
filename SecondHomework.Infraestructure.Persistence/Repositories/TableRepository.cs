@@ -70,13 +70,24 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 		{
 			try
 			{
-				return _context.Orders.Where(t => t.TableThatOrderIsFor == id)
+				return _context.Orders.Where(t => t.TableThatOrderIsFor == id && t.IsCompleted == false)
 					.FirstOrDefaultAsync();
 			}
 			catch
 			{
 				throw;
 			}
+		}
+
+		public async Task<Table> ChangeTableStatusAsync(Guid id, int status)
+		{
+			Table TableToBeUpdate =  await GetByIdAsync(id);
+
+			TableToBeUpdate.TableStateId = status;
+			
+			await base.Update(TableToBeUpdate);
+
+			return TableToBeUpdate;
 		}
 	}
 }

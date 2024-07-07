@@ -46,7 +46,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 		}
 
-		[HttpGet("{Id}")]
+		[HttpGet("{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetDishDto))]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]

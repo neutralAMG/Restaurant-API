@@ -47,7 +47,7 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 		public virtual async Task<Order> Save(Order entity)
 		{
-			
+
 			return await base.Save(entity);
 		}
 
@@ -55,13 +55,24 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 		{
 			Order OrderToUpdate = await GetByIdAsync(entity.Id);
 
-		 return	await base.Update(OrderToUpdate);
+			return await base.Update(OrderToUpdate);
 		}
 
 		public virtual async Task<bool> Delete(Order entity)
 		{
 			Order OrderToBeDelete = await GetByIdAsync(entity.Id);
-			return await base.Delete(OrderToBeDelete);
+
+			bool DeleteOperation = await base.Delete(OrderToBeDelete);
+
+			if (DeleteOperation)
+			{
+				List<OrderDish> OrderDishesToDele = await _context.OrderDishes.Where(o => o.OrderId == entity.Id).ToListAsync();
+
+				_context.OrderDishes.RemoveRange(OrderDishesToDele);
+
+				await _context.SaveChangesAsync();
+			}
+			return DeleteOperation;
 
 		}
 	}

@@ -6,5 +6,6 @@ namespace SecondHomework.Core.Application.Interfaces.Repositories
 	public interface ITableRepository : IBaseRepository<Table>
 	{
 		Task<Order> GetTableOrderAsync(Guid id);
+		Task<Table> ChangeTableStatusAsync(Guid id, int status);
 	}
 }

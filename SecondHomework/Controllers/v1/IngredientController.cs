@@ -8,31 +8,33 @@ using SecondHomework.Core.Application.Interfaces.Contracts;
 namespace SecondHomework.Presentation.WebApi.Controllers.v1
 {
 	[ApiVersion("1.0")]
-	public class OrderController : BaseController
+	public class IngredientController : ControllerBase
 	{
-		private readonly IOrderService _orderService;
+		
+		private readonly IIngredientService _ingredientService;
 
-		public OrderController(IOrderService orderService)
+		public IngredientController(IIngredientService ingredientService)
 		{
-			_orderService = orderService;
+			
+			_ingredientService = ingredientService;
 		}
 
 		[HttpGet]
-		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetOrderDto))]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetDishDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public async Task<IActionResult> GetAll()
 		{
-			Result<List<GetOrderDto>> OrderResult = await _orderService.GetAllAsync();
+			Result<List<GetIngridientDto>> IngredientResult = await _ingredientService.GetAllAsync();
 			try
 			{
-				if (OrderResult.Data == null || OrderResult.Data.Count == 0)
+				if (IngredientResult.Data == null || IngredientResult.Data.Count == 0)
 				{
 					return NoContent();
 				}
-				
 
-				return Ok(OrderResult);
+
+				return Ok(IngredientResult);
 			}
 			catch (Exception ex)
 			{
@@ -42,20 +44,20 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		}
 
 		[HttpGet("{id}")]
-		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetOrderDto))]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetDishDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public async Task<IActionResult> GetById(Guid id)
 		{
-			Result<GetOrderDto> OrderResult = await _orderService.GetByIdAsync(id);
+			Result<GetIngridientDto> IngredientResult = await _ingredientService.GetByIdAsync(id);
 			try
 			{
-				if (OrderResult.Data == null )
+				if (IngredientResult.Data == null)
 				{
 					return NoContent();
 				}
 
-				return Ok(OrderResult);
+				return Ok(IngredientResult);
 			}
 			catch (Exception ex)
 			{
@@ -64,10 +66,10 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		}
 
 		[HttpPost]
-		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(SaveOrderDto))]
+		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(SaveDishDto))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<IActionResult> Post(SaveOrderDto saveDto)
+		public async Task<IActionResult> Post(SaveIngridientDto saveDto)
 		{
 
 			try
@@ -77,12 +79,12 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 					return BadRequest();
 				}
 
-				Result<SaveOrderDto> OrderResult = await _orderService.SaveAsync(saveDto);
+				Result<SaveIngridientDto> IngridientResult = await _ingredientService.SaveAsync(saveDto);
 
 				//	var locationUrl = Url.Action("GetById", "DishController", new { id = DishResult.Data.Id }, Request.Scheme);
 				//return Created(locationUrl ,DishResult);
 
-				return StatusCode(StatusCodes.Status201Created, OrderResult);
+				return StatusCode(StatusCodes.Status201Created, IngridientResult);
 			}
 			catch (Exception ex)
 			{
@@ -94,7 +96,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Put(int operation, SaveOrderDishDto saveDto)
+		public async Task<IActionResult> Put( SaveIngridientDto saveDto)
 		{
 			try
 			{
@@ -103,9 +105,9 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 					return BadRequest();
 				}
 
-				Result<SaveOrderDto> OrderResult = await _orderService.UpdateOrderAsync(operation, saveDto);
+				Result<SaveIngridientDto> OrderResult = await _ingredientService.UpdateAsync(saveDto);
 
-				return NoContent();
+				return Ok();
 			}
 			catch (Exception ex)
 			{
@@ -116,12 +118,12 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[HttpPut("{id}")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		
+
 		public async Task<IActionResult> Delete(Guid id)
 		{
 			try
 			{
-				Result<GetOrderDto> OrderResult = await _orderService.DeleteAsync(id);
+				Result<GetIngridientDto> OrderResult = await _ingredientService.DeleteAsync(id);
 
 				return NoContent();
 			}
@@ -131,6 +133,5 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 			}
 		}
-
 	}
 }

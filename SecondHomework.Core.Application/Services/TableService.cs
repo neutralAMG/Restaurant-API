@@ -20,6 +20,32 @@ namespace SecondHomework.Core.Application.Services
 			_mapper = mapper;
 		}
 
+		public async Task<Result<GetTableDto>> ChangeTableStatusAsync(Guid id, int status)
+		{
+			Result<GetTableDto> result = new();
+			try
+			{
+				Table TableGetted = await _tableRepository.ChangeTableStatusAsync(id, status);
+
+				if (TableGetted == null) {
+					result.IsSucces = false;
+					result.Message = "Error changing the table state";
+					return result;
+				}
+
+				result.Data = _mapper.Map<GetTableDto>(TableGetted);
+
+				result.Message = "Status change was a success";
+				return result;
+			}
+			catch
+			{
+				result.IsSucces = false;
+				result.Message = "Critical error changing the status";
+				return result;
+			}
+		}
+
 		public async Task<Result<GetOrderDto>> GetTableOrderAsync(Guid id)
 		{
 			Result<GetOrderDto> result = new();
