@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SecondHomework.Core.Application.Core;
@@ -8,6 +9,7 @@ using SecondHomework.Core.Application.Interfaces.Contracts;
 namespace SecondHomework.Presentation.WebApi.Controllers.v1
 {
 	[ApiVersion("1.0")]
+	[Authorize(Roles = "Admin, waiter")]
 	public class OrderController : BaseController
 	{
 		private readonly IOrderService _orderService;

@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SecondHomework.Core.Application.Core;
@@ -21,6 +22,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTableDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[Authorize(Roles = "Admin,waiter")]
 		public async Task<IActionResult> GetAll()
 		{
 			Result<List<GetTableDto>> TableResult = await _tableService.GetAllAsync();
@@ -45,6 +47,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTableDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[Authorize(Roles ="Admin,waiter")]
 		public async Task<IActionResult> GetById(Guid id)
 		{
 			Result<GetTableDto> TableResult = await _tableService.GetByIdAsync(id);
@@ -66,6 +69,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[HttpPut("{id}")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[Authorize(Roles ="waiter")]
 		public async Task<IActionResult> ChangeTableStatus(Guid id, int status)
 		{
 			Result<GetTableDto> TableResult = await _tableService.ChangeTableStatusAsync(id, status);
@@ -87,6 +91,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetOrderDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[Authorize(Roles ="waiter")]
 		public async Task<IActionResult> GetTableOrder(Guid id)
 		{
 			Result<GetOrderDto> TableResult = await _tableService.GetTableOrderAsync(id);
@@ -108,6 +113,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(SaveTableDto))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> Post(SaveTableDto saveDto)
 		{
 
@@ -135,6 +141,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[Authorize(Roles ="Admin")]
 		public async Task<IActionResult> Put(UpdateTableDto updateDto)
 		{
 			try

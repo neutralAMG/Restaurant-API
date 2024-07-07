@@ -1,5 +1,5 @@
 ﻿using Asp.Versioning;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SecondHomework.Core.Application.Core;
 using SecondHomework.Core.Application.Dtos.EntitiesDtos;
@@ -8,6 +8,7 @@ using SecondHomework.Core.Application.Interfaces.Contracts;
 namespace SecondHomework.Presentation.WebApi.Controllers.v1
 {
 	[ApiVersion("1.0")]
+	[Authorize(Roles = "Admin")]
 	public class IngredientController : ControllerBase
 	{
 		
