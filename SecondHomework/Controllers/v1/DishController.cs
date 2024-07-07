@@ -16,7 +16,6 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 		public DishController(IDishService dishService)
 		{
-
 			_dishService = dishService;
 		}
 
@@ -28,21 +27,23 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		public async Task<IActionResult> GetAll()
 		{
 			Result<List<GetDishDto>> DishResult = await _dishService.GetAllAsync();
+			try
+			{
+				if (DishResult.Data == null)
+				{
+					return NotFound();
+				}
+				else if (DishResult.Data.Count == 0)
+				{
+					return NoContent();
+				}
+				return Ok(DishResult);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+			}
 
-			if (DishResult.Data == null)
-			{
-				return NotFound();
-			}
-			else if (DishResult.Data.Count == 0)
-			{
-				return NoContent();
-			}
-			if (DishResult == null)
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError);
-			}
-
-			return Ok(DishResult);
 		}
 
 		[HttpGet("{Id}")]
@@ -53,18 +54,19 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		public async Task<IActionResult> GetById(Guid id)
 		{
 			Result<GetDishDto> DishResult = await _dishService.GetByIdAsync(id);
-
-
-			if (DishResult.Data == null)
+			try
 			{
-				return NoContent();
-			}
-			if (DishResult == null)
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError);
-			}
+				if (DishResult.Data == null)
+				{
+					return NoContent();
+				}
 
-			return Ok(DishResult);
+				return Ok(DishResult);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+			}
 		}
 
 		[HttpPost]
@@ -73,25 +75,26 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public async Task<IActionResult> Post(SaveDishDto saveDto)
 		{
-			
 
-            if (!ModelState.IsValid)
-            {
-				return BadRequest();
-            }
+			try
+			{
+				if (!ModelState.IsValid)
+				{
+					return BadRequest();
+				}
 
-            Result<SaveDishDto> DishResult = await _dishService.SaveAsync(saveDto);
-			//	var locationUrl = Url.Action("GetById", "DishController", new { id = DishResult.Data.Id }, Request.Scheme);
-			//return Created(locationUrl ,DishResult);
+				Result<SaveDishDto> DishResult = await _dishService.SaveAsync(saveDto);
 
-			if (DishResult == null)
+				//	var locationUrl = Url.Action("GetById", "DishController", new { id = DishResult.Data.Id }, Request.Scheme);
+				//return Created(locationUrl ,DishResult);
+
+				return StatusCode(StatusCodes.Status201Created, DishResult);
+			}
+			catch (Exception ex)
 			{
 				return StatusCode(StatusCodes.Status500InternalServerError);
 			}
-			return StatusCode(StatusCodes.Status201Created, DishResult);
-
-
-        }
+		}
 
 		[HttpPut("{Id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveDishDto))]
@@ -99,22 +102,23 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<IActionResult> Put(int operation, SaveDishIngredientDto saveDto)
 		{
-
-			if (!ModelState.IsValid)
+			try
 			{
-				return BadRequest();
+				if (!ModelState.IsValid)
+				{
+					return BadRequest();
+				}
+
+				Result<SaveDishDto> DishResult = await _dishService.UpdateDishAsync(operation, saveDto);
+
+				return Ok(DishResult);
 			}
-		
-			Result<SaveDishDto> DishResult = await _dishService.UpdateDishAsync(operation ,saveDto);
+			catch (Exception ex)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 
-			if (DishResult == null) { 
-				return StatusCode(StatusCodes.Status500InternalServerError, DishResult.Message);	
 			}
-			return Ok(DishResult);
-
-
 		}
-		
-		
+
 	}
 }
