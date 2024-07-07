@@ -36,7 +36,6 @@ namespace SecondHomework.Core.Application.Services
 
 				if (Operation == (int)Enums.Operation.Create)
 				{
-
 					await _orderDishService.SaveAsync(saveOrderDishDto);
 					result.Message = "Dish was aded to the order";
 				}
@@ -45,6 +44,9 @@ namespace SecondHomework.Core.Application.Services
 					await _orderDishService.DeleteAsync(saveOrderDishDto.Id);
 					result.Message = "Dish was Deleted from the order";
 				}
+				Order orderToBeUpdate = await _orderRepository.GetByIdAsync(saveOrderDishDto.OrderId);
+
+				await _orderRepository.Update(orderToBeUpdate);
 
 				return result;
 			}

@@ -4,6 +4,6 @@ namespace SecondHomework.Core.Domain.Entities
 {
 	public class Ingredient : BaseNameEntity<Guid>
 	{
-		IList<DishIngridient> DishIngridients { get; set; }
+	 public	IList<DishIngridient> DishIngridients { get; set; }
 	}
 }

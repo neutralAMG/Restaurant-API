@@ -53,9 +53,11 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 		public virtual async Task<Order> Update(Order entity)
 		{
-			Order OrderToUpdate = await GetByIdAsync(entity.Id);
+			Order OrderToBeUpdate = await GetByIdAsync(entity.Id);
 
-			return await base.Update(OrderToUpdate);
+			OrderToBeUpdate.SubAmount = OrderToBeUpdate.OrderDishes.Select(o => (decimal)o.Dish.Price).Sum();
+
+			return await base.Update(OrderToBeUpdate);
 		}
 
 		public virtual async Task<bool> Delete(Order entity)
@@ -66,9 +68,9 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 			if (DeleteOperation)
 			{
-				List<OrderDish> OrderDishesToDele = await _context.OrderDishes.Where(o => o.OrderId == entity.Id).ToListAsync();
+				List<OrderDish> OrderDishesToDelete = await _context.OrderDishes.Where(o => o.OrderId == entity.Id).ToListAsync();
 
-				_context.OrderDishes.RemoveRange(OrderDishesToDele);
+				_context.OrderDishes.RemoveRange(OrderDishesToDelete);
 
 				await _context.SaveChangesAsync();
 			}

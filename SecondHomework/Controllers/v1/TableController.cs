@@ -1,6 +1,5 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SecondHomework.Core.Application.Core;
 using SecondHomework.Core.Application.Dtos.EntitiesDtos;
