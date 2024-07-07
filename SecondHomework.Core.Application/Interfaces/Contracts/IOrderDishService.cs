@@ -5,7 +5,7 @@ using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Core.Application.Interfaces.Contracts
 {
-	public interface IOrderDishService : IBaseService<GetOrderDishDto, SaveOrderDishDto, OrderDish>
+	public interface IOrderDishService : IBaseService<GetOrderDishDto, SaveOrderDishDto, UpdateOrderDishDto, OrderDish>
 	{
 	}
 }

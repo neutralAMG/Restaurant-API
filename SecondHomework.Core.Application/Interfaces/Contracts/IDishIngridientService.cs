@@ -5,7 +5,7 @@ using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Core.Application.Interfaces.Contracts
 {
-	public interface IDishIngridientService : IBaseService<GetDishIngriedientDto, SaveDishIngredientDto, DishIngridient>
+	public interface IDishIngridientService : IBaseService<GetDishIngridientDto, SaveDishIngredientDto, UpdateDishIngredientDto, DishIngridient>
 	{
 
 	}

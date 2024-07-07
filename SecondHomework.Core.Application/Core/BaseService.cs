@@ -5,9 +5,10 @@ using AutoMapper;
 
 namespace SecondHomework.Core.Application.Core
 {
-	public class BaseService<TGetDto, TSaveDto, TEntity> : IBaseService<TGetDto, TSaveDto, TEntity>
+	public class BaseService<TGetDto, TSaveDto, TUpdateDto, TEntity> : IBaseService<TGetDto, TSaveDto, TUpdateDto, TEntity>
 		where TGetDto : class
 		where TSaveDto : class
+		where TUpdateDto : class
 		where TEntity : class
 	{
 		private readonly IBaseRepository<TEntity> _baseRepository;
@@ -127,9 +128,9 @@ namespace SecondHomework.Core.Application.Core
 			}
 		}
 
-		public virtual async Task<Result<TSaveDto>> UpdateAsync(TSaveDto entity)
+		public virtual async Task<Result<TUpdateDto>> UpdateAsync(TUpdateDto entity)
 		{
-			Result<TSaveDto> result = new();
+			Result<TUpdateDto> result = new();
 			try
 			{
 				if (entity == null)
@@ -156,7 +157,7 @@ namespace SecondHomework.Core.Application.Core
 					return result;
 				}
 
-				result.Data = _mapper.Map<TSaveDto>(EntityUpdated);
+				result.Data = _mapper.Map<TUpdateDto>(EntityUpdated);
 
 				if (result.Data == null)
 				{

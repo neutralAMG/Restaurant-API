@@ -135,7 +135,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Put(SaveTableDto saveDto)
+		public async Task<IActionResult> Put(UpdateTableDto updateDto)
 		{
 			try
 			{
@@ -144,7 +144,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 					return BadRequest();
 				}
 
-				Result<SaveTableDto> TableResult = await _tableService.UpdateAsync(saveDto);
+				Result<UpdateTableDto> TableResult = await _tableService.UpdateAsync(updateDto);
 
 				return Ok();
 			}

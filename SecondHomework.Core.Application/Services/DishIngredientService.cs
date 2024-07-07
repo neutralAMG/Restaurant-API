@@ -9,7 +9,7 @@ using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Core.Application.Services
 {
-	public class DishIngredientService : BaseService<GetDishIngriedientDto, SaveDishIngredientDto, DishIngridient>, IDishIngridientService
+	public class DishIngredientService : BaseService<GetDishIngridientDto, SaveDishIngredientDto, UpdateDishIngredientDto, DishIngridient>, IDishIngridientService
 	{
 		private readonly IDishIngridientRepository _dishIngridientRepository;
 		private readonly IMapper _mapper;

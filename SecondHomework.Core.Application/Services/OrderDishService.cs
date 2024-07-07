@@ -9,7 +9,7 @@ using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Core.Application.Services
 {
-	public class OrderDishService : BaseService<GetOrderDishDto, SaveOrderDishDto, OrderDish>, IOrderDishService
+	public class OrderDishService : BaseService<GetOrderDishDto, SaveOrderDishDto, UpdateOrderDishDto, OrderDish>, IOrderDishService
 	{
 
 		private readonly IOrderDishRepository _orderDishRepository;

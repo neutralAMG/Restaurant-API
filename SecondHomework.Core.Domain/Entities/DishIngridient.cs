@@ -4,7 +4,7 @@ using SecondHomework.Core.Domain.Core;
 
 namespace SecondHomework.Core.Domain.Entities
 {
-	public class DishIngridient : BaseEntity<Guid>
+	public class DishIngridient: BaseEntity<Guid>
 	{
 		public Guid DishId { get; set; }
 		public Guid IngridientId { get; set; }

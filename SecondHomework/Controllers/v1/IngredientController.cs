@@ -96,7 +96,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Put( SaveIngridientDto saveDto)
+		public async Task<IActionResult> Put( UpdateIngridientDto updateDto)
 		{
 			try
 			{
@@ -105,7 +105,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 					return BadRequest();
 				}
 
-				Result<SaveIngridientDto> OrderResult = await _ingredientService.UpdateAsync(saveDto);
+				Result<UpdateIngridientDto> OrderResult = await _ingredientService.UpdateAsync(updateDto);
 
 				return Ok();
 			}

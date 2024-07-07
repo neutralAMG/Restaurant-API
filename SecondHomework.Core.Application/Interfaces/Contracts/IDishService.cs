@@ -6,7 +6,7 @@ using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Core.Application.Interfaces.Contracts
 {
-	public interface IDishService : IBaseService<GetDishDto, SaveDishDto, Dish>
+	public interface IDishService : IBaseService<GetDishDto, SaveDishDto, UpdateDishDto, Dish>
 	{
 		Task<Result<SaveDishDto>> UpdateDishAsync(int Operation, SaveDishIngredientDto saveDishDto);
 	}

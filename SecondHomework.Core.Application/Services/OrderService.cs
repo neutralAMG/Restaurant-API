@@ -8,7 +8,7 @@ using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Core.Application.Services
 {
-	public class OrderService : BaseService<GetOrderDto, SaveOrderDto, Order>, IOrderService
+	public class OrderService : BaseService<GetOrderDto, SaveOrderDto, UpdateOrderDto, Order>, IOrderService
 	{
 		private readonly IOrderRepository _orderRepository;
 		private readonly IMapper _mapper;
@@ -37,12 +37,12 @@ namespace SecondHomework.Core.Application.Services
 				if (Operation == (int)Enums.Operation.Create)
 				{
 
-					await _orderDishService.Save(saveOrderDishDto);
+					await _orderDishService.SaveAsync(saveOrderDishDto);
 					result.Message = "Dish was aded to the order";
 				}
 				else if (Operation == (int)Enums.Operation.Delete)
 				{
-					await _orderDishService.Delete(saveOrderDishDto.Id);
+					await _orderDishService.DeleteAsync(saveOrderDishDto.Id);
 					result.Message = "Dish was Deleted from the order";
 				}
 

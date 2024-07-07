@@ -9,7 +9,7 @@ using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Core.Application.Services
 {
-	public class DishService : BaseService<GetDishDto, SaveDishDto, Dish>, IDishService
+	public class DishService : BaseService<GetDishDto, SaveDishDto, UpdateDishDto, Dish>, IDishService
 	{
 		private readonly IDishRepository _dishRepository;
 		private readonly IDishIngridientService _dishIngridientService;
@@ -37,12 +37,12 @@ namespace SecondHomework.Core.Application.Services
 				if (Operation == (int)Enums.Operation.Create)
 				{
 
-					await _dishIngridientService.Save(saveDishIngredientDto);
+					await _dishIngridientService.SaveAsync(saveDishIngredientDto);
 					result.Message = "Ingridient was aded to the dish";
 				}
 				else if (Operation == (int)Enums.Operation.Delete)
 				{
-					await _dishIngridientService.Delete(saveDishIngredientDto.Id);
+					await _dishIngridientService.DeleteAsync(saveDishIngredientDto.Id);
 					result.Message = "Ingredient was Deleted from the dish";
 				}
 

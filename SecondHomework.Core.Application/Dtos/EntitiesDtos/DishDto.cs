@@ -1,13 +1,34 @@
 ﻿
 
+using SecondHomework.Core.Application.Dtos.SubEntitiesDto;
+using SecondHomework.Core.Domain.Entities;
+using System.Data.SqlTypes;
+
 namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 {
-	public record GetDishDto
+	 public record BaseDishDto
 	{
+		public string Name { get; set; }
+		public SqlMoney Price { get; set; }
+		public int AmountOfPeople { get; set; }
 	}
-	public record SaveDishDto
+	public record GetDishDto 
+	{
+		public Guid Id { get; set; }
+		public string Name { get; set; }
+		public SqlMoney Price { get; set; }
+		public int AmountOfPeople { get; set; }
+		public GetDishCategoryDto DishCategory { get; set; }
+		public List<GetDishIngridientDto> DishIngridients { get; set; }
+		public List<GetOrderDishDto> OrderDishes { get; set; }
+	}
+	public record SaveDishDto : BaseDishDto
+	{
+		public int DishCategoryId { get; set; }
+	}
+
+	public record UpdateDishDto : BaseDishDto
 	{
 		public Guid Id { get; set; }
 	}
-
 }

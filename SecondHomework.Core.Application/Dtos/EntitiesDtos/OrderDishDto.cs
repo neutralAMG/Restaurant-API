@@ -1,13 +1,27 @@
 ﻿
 
+using SecondHomework.Core.Domain.Entities;
+
 namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 {
-	public record GetOrderDishDto
+	public record BaseOrderDishDto
+	{		
+		public Guid DishId { get; set; }
+	}
+	public record GetOrderDishDto 
 	{
+		public GetOrderDto Order { get; set; }
+		public GetDishDto Dish { get; set; }
 	}
 
-	public record SaveOrderDishDto
+	public record SaveOrderDishDto : BaseOrderDishDto
+	{
+		public Guid OrderId { get; set; }
+		public Guid Id { get; set; }
+	}
+	public record UpdateOrderDishDto : BaseOrderDishDto
 	{
 		public Guid Id { get; set; }
 	}
+
 }

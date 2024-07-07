@@ -9,7 +9,7 @@ using SecondHomework.Core.Domain.Entities;
 
 namespace SecondHomework.Core.Application.Services
 {
-	public class TableService : BaseService<GetTableDto, SaveTableDto, Table>, ITableService
+	public class TableService : BaseService<GetTableDto, SaveTableDto,UpdateTableDto, Table>, ITableService
 	{
 		private readonly ITableRepository _tableRepository;
 		private readonly IMapper _mapper;
