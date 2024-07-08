@@ -63,7 +63,6 @@ namespace SecondHomework.Infraestructure.Identity
 					ValidIssuer = config["JwtSettings:Issuer"],
 					ValidAudience = config["JwtSettings:Audience"],
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Key"])),
-
 					RoleClaimType = "Roles"
 				};
 
