@@ -122,6 +122,7 @@ namespace SecondHomework.Infraestructure.Identity.Services
 
 			user.EmailConfirmed = true;
 			user.PhoneNumberConfirmed = true;
+			user.LockoutEnabled = false;
 			await _userManager.AddToRoleAsync(user, Roles.waiter.ToString());
 
 			return responce;
@@ -170,6 +171,7 @@ namespace SecondHomework.Infraestructure.Identity.Services
 
 			user.EmailConfirmed = true;
 			user.PhoneNumberConfirmed = true;
+			user.LockoutEnabled = false;
 			await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
 
 			return responce;

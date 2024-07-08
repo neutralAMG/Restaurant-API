@@ -12,7 +12,7 @@ namespace SecondHomework.Core.Domain.Entities
             IsCompleted = false;
         }
         public Guid TableThatOrderIsFor { get; set; }
-        public SqlMoney SubAmount { get;  set; }
+        public double SubAmount { get;  set; }
 		public bool IsCompleted { get; set; }	
 
         public Table Table { get; set; }

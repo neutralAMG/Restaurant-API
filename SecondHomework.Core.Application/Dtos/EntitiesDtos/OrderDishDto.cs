@@ -10,7 +10,8 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 	}
 	public record GetOrderDishDto 
 	{
-		public GetOrderDto Order { get; set; }
+		public Guid Id { get; set; }
+	//	public GetOrderDto Order { get; set; }
 		public GetDishDto Dish { get; set; }
 	}
 

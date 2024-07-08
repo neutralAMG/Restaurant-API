@@ -9,14 +9,14 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 	 public record BaseDishDto
 	{
 		public string Name { get; set; }
-		public SqlMoney Price { get; set; }
+		public double Price { get; set; }
 		public int AmountOfPeople { get; set; }
 	}
 	public record GetDishDto 
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
-		public SqlMoney Price { get; set; }
+		public double Price { get; set; }
 		public int AmountOfPeople { get; set; }
 		public GetDishCategoryDto DishCategory { get; set; }
 		public List<GetDishIngridientDto> DishIngridients { get; set; }

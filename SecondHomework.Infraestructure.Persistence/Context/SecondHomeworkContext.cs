@@ -19,7 +19,7 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 		public DbSet<TableState> TableStates { get; set; }
 		public DbSet<DishCategory> DishCategories { get; set; }
 
-		public SecondHomeworkContext(DbContextOptions<SecondHomeworkContext> options) : base(options)
+        public SecondHomeworkContext(DbContextOptions<SecondHomeworkContext> options) : base(options)
 		{
 
 		}
@@ -27,11 +27,12 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseSqlServer("Server=DESKTOP-LL4GL68; Database=SecondHomework; Integrated Security=true; TrustServerCertificate=true;"
-				, m => m.MigrationsAssembly(typeof(SecondHomeworkContext).Assembly.FullName));
+				, m => m.MigrationsAssembly("SecondHomework.Infraestructure.Persistence"));
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			#region Dish Configuration
 			modelBuilder.Entity<Dish>(d =>
 			{
 				d.HasKey(d => d.Id);
@@ -48,13 +49,16 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 				.HasForeignKey(d => d.DishId).OnDelete(DeleteBehavior.Cascade);
 
 				d.HasIndex(d => d.DishCategoryId).IsClustered(false);
-				d.HasIndex(d => d.OrderDishes).IsClustered(false);
+				
 
 				d.Property(d => d.AmountOfPeople).IsRequired();
 				d.Property(d => d.Price).IsRequired();
 				d.Property(d => d.Name).IsRequired();
 
 			});
+			#endregion
+
+			#region DishIngridient Configuration
 			modelBuilder.Entity<DishIngridient>(d =>
 			{
 				d.HasKey(d => d.Id);
@@ -67,9 +71,10 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 
 				d.HasIndex(d => d.DishId).IsClustered(false);
 				d.HasIndex(d => d.IngridientId).IsClustered(false);
-
-
 			});
+			#endregion
+
+			#region Order Configuration
 			modelBuilder.Entity<Order>(o =>
 			{
 				o.HasKey(o => o.Id);
@@ -87,8 +92,9 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 				o.Property(o => o.IsCompleted).IsRequired();
 
 			});
+			#endregion
 
-
+			#region OrderDish Configuration
 			modelBuilder.Entity<OrderDish>(o =>
 			{
 				o.HasKey(o => o.Id);
@@ -103,6 +109,9 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 				o.HasIndex(o => o.DishId).IsClustered(false);
 
 			});
+			#endregion
+
+			#region Table Configuration
 			modelBuilder.Entity<Table>(t =>
 			{
 				t.HasKey(t => t.Id);
@@ -119,6 +128,9 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 
 
 			});
+			#endregion
+
+			#region Ingredient Configuration
 			modelBuilder.Entity<Ingredient>(i =>
 			{
 				i.HasKey(t => t.Id);
@@ -128,6 +140,9 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 
 				i.Property(i => i.Name);
 			});
+			#endregion
+
+			#region TableState Configuration
 			modelBuilder.Entity<TableState>(t =>
 			{
 				t.HasKey(t => t.Id);
@@ -136,6 +151,9 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 				t.HasData(new TableState { Id = 2, Name = "InProcces" });
 				t.HasData(new TableState { Id = 3, Name = "Attended" });
 			});
+			#endregion
+
+			#region DishCategory Configuration
 			modelBuilder.Entity<DishCategory>(d =>
 			{
 				d.HasKey(d => d.Id);
@@ -145,6 +163,7 @@ namespace SecondHomework.Infraestructure.Persistence.Context
 				d.HasData(new DishCategory { Id = 3, Name = "Dessert" });
 				d.HasData(new DishCategory { Id = 4, Name = "beverages" });
 			});
+			#endregion
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace SecondHomework.Core.Domain.Entities
 	public class Dish : BaseNameEntity<Guid>
 	{
  
-        public SqlMoney Price { get; set; }
+        public double Price { get; set; }
 		public int AmountOfPeople { get; set; }
 
 		public int DishCategoryId { get; set; }

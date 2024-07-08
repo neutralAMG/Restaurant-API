@@ -18,20 +18,24 @@ namespace SecondHomework.Api.Extensions
 					Version = "v1",
 					Title = "Restorant api",
 					Description = " This api will be responsable for all data distribution",
-					Contact = new OpenApiContact
-					{
-						Name = "Alejandro",
-						Email = "heey",
-						Url = new Uri("")
-					}
+					//Contact = new OpenApiContact
+					//{
+					//	Name = "Alejandro",
+					//	Email = "heey",
+					//	Url = new Uri("https://www.youtube.com/watch?v=fLLHxZVOjxo")
+					//}
 				});
 				options.DescribeAllParametersInCamelCase();
+				options.ResolveConflictingActions(apidefinition =>
+				{
+				  return apidefinition.First();
+				});
 				options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
 				{
 					Name = "Authorization",
 					In = ParameterLocation.Header,
 					Type = SecuritySchemeType.ApiKey,
-					Scheme = "Bearee",
+					Scheme = "Bearer",
 					BearerFormat = "JWT",
 					Description = "Input your Bearer token in this format - Bearer (Your token here)"
 				});
@@ -49,7 +53,7 @@ namespace SecondHomework.Api.Extensions
 						Scheme = "Bearer",
 						Name = "Bearer",
 						In = ParameterLocation.Header,
-					
+
 
 					  }, new List<string>()
 					}

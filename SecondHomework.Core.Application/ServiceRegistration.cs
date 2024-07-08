@@ -10,7 +10,7 @@ namespace SecondHomework.Core.Application
 	{
 		public static void AddAplicationLayer(this IServiceCollection services)
 		{
-			services.AddTransient<IDishIngridientService, IDishIngridientService>();
+			services.AddTransient<IDishIngredientService, DishIngredientService>();
 			services.AddTransient<IDishService, DishService>();
 			services.AddTransient<IIngredientService, IngridientService>();
 			services.AddTransient<IOrderDishService, OrderDishService>();

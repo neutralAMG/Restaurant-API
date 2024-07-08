@@ -12,10 +12,10 @@ namespace SecondHomework.Core.Application.Services
 	public class DishService : BaseService<GetDishDto, SaveDishDto, UpdateDishDto, Dish>, IDishService
 	{
 		private readonly IDishRepository _dishRepository;
-		private readonly IDishIngridientService _dishIngridientService;
+		private readonly IDishIngredientService _dishIngridientService;
 		private readonly IMapper _mapper;
 
-		public DishService(IDishRepository dishRepository, IDishIngridientService dishIngridientService, IMapper mapper) : base(dishRepository, mapper)
+		public DishService(IDishRepository dishRepository, IDishIngredientService dishIngridientService, IMapper mapper) : base(dishRepository, mapper)
 		{
 			_dishRepository = dishRepository;
 			_dishIngridientService = dishIngridientService;

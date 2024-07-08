@@ -92,7 +92,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPut("{Id}")]
+		[HttpPut]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -115,7 +115,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 			}
 		}
-		[HttpPut("{id}")]
+		[HttpDelete("{id}")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		

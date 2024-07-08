@@ -22,9 +22,11 @@ namespace SecondHomework.Infraestructure.Identity
 {
 	public static class ServiceRegistration
 	{
-		public static void AddIdentityInfraestructureLayer(this IServiceCollection services, IConfiguration config) {
+		public static void AddIdentityInfraestructureLayer(this IServiceCollection services, IConfiguration config)
+		{
 
-			services.AddDbContext<IdentityContext>(opti => opti.UseSqlServer(config.GetConnectionString("IdentityConnection"), m => m.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)));
+			services.AddDbContext<IdentityContext>(opti => opti.UseSqlServer(config.GetConnectionString("IdentityConnection"),
+            m => m.MigrationsAssembly("SecondHomework.Infraestructure.Identity")));
 
 
 			services.AddIdentity<AplicationUser, IdentityRole>()
@@ -37,6 +39,8 @@ namespace SecondHomework.Infraestructure.Identity
 				options.LoginPath = "";
 			});
 			services.AddTransient<IAccountService, AccountService>();
+
+ services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
 
 			services.AddAuthentication(options =>
 			{
@@ -55,9 +59,9 @@ namespace SecondHomework.Infraestructure.Identity
 					ValidateAudience = true,
 					ValidateLifetime = true,
 					ClockSkew = TimeSpan.Zero,
-					ValidIssuer = config["JwtSettings: Issuer"],
-					ValidAudience = config["JwtSettings: Audience"],
-					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings: Key"])),
+					ValidIssuer = config["JwtSettings:Issuer"],
+					ValidAudience = config["JwtSettings:Audience"],
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Key"])),
 
 				};
 
@@ -102,8 +106,8 @@ namespace SecondHomework.Infraestructure.Identity
 				};
 			});
 
-			services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
-		
+			
+
 		}
 	}
 }

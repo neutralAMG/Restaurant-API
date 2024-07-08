@@ -8,6 +8,7 @@ namespace SecondHomework.Infraestructure.Identity.Context
 {
 	public class IdentityContext : IdentityDbContext<AplicationUser>
 	{
+
         public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
         {
            
@@ -15,7 +16,7 @@ namespace SecondHomework.Infraestructure.Identity.Context
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			base.OnConfiguring(optionsBuilder);
+			optionsBuilder.UseSqlServer("Server=DESKTOP-LL4GL68; Database=SecondHomework; Integrated Security=true; TrustServerCertificate=true;", m => m.MigrationsAssembly("SecondHomework.Infraestructure.Identity"));
 		}
 		protected override void OnModelCreating(ModelBuilder builder)
 		{

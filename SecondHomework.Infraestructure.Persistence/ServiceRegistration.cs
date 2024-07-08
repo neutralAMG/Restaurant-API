@@ -11,11 +11,11 @@ namespace SecondHomework.Infraestructure.Persistence
 {
 	public static class ServiceRegistration
 	{
-		public static void AddInfraestructurePersistanceLaye(this IServiceCollection services,  IConfiguration configuration)
+		public static void AddInfraestructurePersistanceLayer(this IServiceCollection services,  IConfiguration configuration)
 		{
 
 			services.AddDbContext<SecondHomeworkContext>(op => op.UseSqlServer("DefaultConnection",
-				m => m.MigrationsAssembly(typeof(SecondHomeworkContext).Assembly.FullName)));
+				m => m.MigrationsAssembly("SecondHomework.Infraestructure.Persistence")));
 
 
 			services.AddTransient<IDishIngridientRepository, DishIngredientRepository>();
@@ -24,6 +24,7 @@ namespace SecondHomework.Infraestructure.Persistence
 			services.AddTransient<IOrderDishRepository, OrderDishRepository>();
 			services.AddTransient<IOrderRepository, OrderRepository>();
 			services.AddTransient<ITableRepository, TableRepository>();
+			services.AddTransient<IIngredientRepository, IngredientRepository>();
 		}
 	}
 }

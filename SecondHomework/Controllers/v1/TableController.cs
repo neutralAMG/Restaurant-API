@@ -8,7 +8,7 @@ using SecondHomework.Core.Application.Interfaces.Contracts;
 namespace SecondHomework.Presentation.WebApi.Controllers.v1
 {
 	[ApiVersion("1.0")]
-	public class TableController : ControllerBase
+	public class TableController : BaseController
 	{
 		private readonly ITableService _tableService;
 
@@ -42,7 +42,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 		}
 
-		[HttpGet("{Id}")]
+		[HttpGet("{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTableDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -86,7 +86,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 			}
 		}
-		[HttpGet("{id}")]
+		[HttpGet("GetTableOrder/{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetOrderDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -136,7 +136,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPut("{Id}")]
+		[HttpPut]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -160,7 +160,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 			}
 		}
-		[HttpPut("{Id}")]
+		[HttpPut("{id}")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 

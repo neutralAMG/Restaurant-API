@@ -4,6 +4,7 @@ using SecondHomework.Core.Application;
 using SecondHomework.Infraestructure.Identity;
 using SecondHomework.Infraestructure.Identity.Entities;
 using SecondHomework.Infraestructure.Identity.Seeds;
+using SecondHomework.Infraestructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,25 +16,30 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddIdentityInfraestructureLayer(builder.Configuration);
+
+builder.Services.AddInfraestructurePersistanceLayer(builder.Configuration);
 
 builder.Services.AddIdentityInfraestructureLayer(builder.Configuration);
 
 builder.Services.AddAplicationLayer();
 
 builder.Services.AddApiVersioningExtensiom();
+
+builder.Services.AddHealthChecks();
+
 builder.Services.AddSwaggerExtensiom();
 
 
 builder.Services.AddApiVersioningExtensiom();
+
+builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddApiVersioning(setup =>
 {
 	setup.ReportApiVersions = true;
 });
 
-builder.Services.AddHealthChecks();
-builder.Services.AddDistributedMemoryCache();
+
 
 var app = builder.Build();
 
@@ -55,9 +61,11 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
-app.UseSwaggerExtention();
-app.UseHealthChecks("/health");
 
+app.UseSwaggerExtention();
+
+app.UseHealthChecks("/health");
+//app.UseSession();
 app.MapControllers();
 
 using(var scope = app.Services.CreateScope())

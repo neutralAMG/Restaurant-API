@@ -20,6 +20,7 @@ namespace SecondHomework.Infraestructure.Identity.Seeds
 			DefaultUser.Email = "adminEmail@gmail.com";
 			DefaultUser.EmailConfirmed = true;
 			DefaultUser.PhoneNumberConfirmed = true;
+			DefaultUser.LockoutEnabled = false;
 
 			if (userManager.Users.All(u => u.Id != DefaultUser.Id))
 			{

@@ -19,6 +19,7 @@ namespace SecondHomework.Infraestructure.Identity.Seeds
 				Email = "UsersuperadminEmail@gmail.com",
 				EmailConfirmed = true,
 				PhoneNumberConfirmed = true,
+				LockoutEnabled = false,
 			};
 
 

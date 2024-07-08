@@ -18,19 +18,19 @@ namespace SecondHomework.Presentation.WebApi.Controllers
 		[HttpPost("Authenticate")]
 		public async Task<IActionResult> AuthenticateAsync(AuthenticationRequest request)
 		{
-			return Ok(_accountService.AuthenticateAsync(request));
+			return Ok( await _accountService.AuthenticateAsync(request));
 		}
 
 		[HttpPost("RegisterBasicUser")]
 		public async Task<IActionResult> RegisterBasicUserAsync(RegisterRequest request)
 		{
-			return Ok(_accountService.RegisterBasicUserAsync(request));
+			return Ok(await _accountService.RegisterBasicUserAsync(request));
 		}
 
 		[HttpPost("RegisterAdminUser")]
 		public async Task<IActionResult> RegisterAdminUserAsync(RegisterRequest request)
 		{
-			return Ok(_accountService.RegisterAdminUserAsync(request));
+			return Ok(await _accountService.RegisterAdminUserAsync(request));
 		}
 	}
 }

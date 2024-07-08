@@ -55,7 +55,7 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 		{
 			Order OrderToBeUpdate = await GetByIdAsync(entity.Id);
 
-			OrderToBeUpdate.SubAmount = OrderToBeUpdate.OrderDishes.Select(o => (decimal)o.Dish.Price).Sum();
+			OrderToBeUpdate.SubAmount = OrderToBeUpdate.OrderDishes.Select(o => o.Dish.Price).Sum();
 
 			return await base.Update(OrderToBeUpdate);
 		}

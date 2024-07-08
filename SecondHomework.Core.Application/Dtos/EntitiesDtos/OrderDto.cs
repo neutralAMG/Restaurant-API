@@ -7,12 +7,15 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 {
 	public record BaseOrderDto
 	{		
-		public SqlMoney SubAmount { get; set; }
+		public double SubAmount { get; set; }
 		public bool IsCompleted { get; set; }
 
 	}
 	public record GetOrderDto 
 	{
+		public Guid Id { get; set; }
+		public double SubAmount { get; set; }
+		public bool IsCompleted { get; set; }
 		public GetTableDto Table { get; set; }
 		public List<GetOrderDishDto> OrderDishes { get; set; }
 	}

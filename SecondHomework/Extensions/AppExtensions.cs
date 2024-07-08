@@ -9,7 +9,7 @@ namespace SecondHomework.Api.Extensions
 			app.UseSwagger();
 			app.UseSwaggerUI(options =>
 			{
-				options.SwaggerEndpoint("/swagger/v1/swagger.json", "Restaurant API");
+				options.SwaggerEndpoint("/swagger/v1/swagger.json", "Restaurant webApi");
 			});
 		}
 	}

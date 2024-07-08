@@ -9,14 +9,14 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 {
 	[ApiVersion("1.0")]
 	[Authorize(Roles = "Admin")]
-	public class IngredientController : ControllerBase
+	public class IngredientController : BaseController
 	{
-		
+
 		private readonly IIngredientService _ingredientService;
 
 		public IngredientController(IIngredientService ingredientService)
 		{
-			
+
 			_ingredientService = ingredientService;
 		}
 
@@ -93,11 +93,11 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPut("{Id}")]
+		[HttpPut]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Put( UpdateIngridientDto updateDto)
+		public async Task<IActionResult> Put(UpdateIngridientDto updateDto)
 		{
 			try
 			{
@@ -116,7 +116,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 			}
 		}
-		[HttpPut("{id}")]
+		[HttpDelete("{id}")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 

@@ -98,7 +98,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPut("{Id}")]
+		[HttpPut]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveDishDto))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

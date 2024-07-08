@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SecondHomework.Presentation.WebApi.Controllers.v1
 {
-	[Route("api/v{version:apiVersion}[controller]")]
 	[ApiController]
+	[Route("api/v{version:apiVersion}/[controller]")]
 	public abstract class BaseController : ControllerBase
 	{
 	}
