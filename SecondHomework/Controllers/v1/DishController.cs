@@ -11,7 +11,7 @@ using SecondHomework.Core.Application.Interfaces.Contracts;
 namespace SecondHomework.Presentation.WebApi.Controllers.v1
 {
 	[ApiVersion("1.0")]
-	[Authorize(Roles = "Admin")]
+	[Authorize(Roles ="Admin")]
 	public class DishController : BaseController
 	{
 		private readonly IDishService _dishService;
@@ -21,7 +21,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			_dishService = dishService;
 		}
 
-		[HttpGet]
+		[HttpGet("GetAll")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetDishDto))]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -48,7 +48,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("GetById/{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetDishDto))]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -71,7 +71,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPost]
+		[HttpPost("Add")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(SaveDishDto))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -98,7 +98,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPut]
+		[HttpPut("Edit")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveDishDto))]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]

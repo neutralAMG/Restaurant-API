@@ -40,12 +40,13 @@ namespace SecondHomework.Infraestructure.Identity
 			});
 			services.AddTransient<IAccountService, AccountService>();
 
- services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
+            services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
 
 			services.AddAuthentication(options =>
 			{
 				options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 				options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+				options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 
 			}).AddJwtBearer(options =>
 			{
@@ -63,6 +64,7 @@ namespace SecondHomework.Infraestructure.Identity
 					ValidAudience = config["JwtSettings:Audience"],
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Key"])),
 
+					RoleClaimType = "Roles"
 				};
 
 				options.Events = new JwtBearerEvents()

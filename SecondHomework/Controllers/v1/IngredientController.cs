@@ -20,7 +20,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			_ingredientService = ingredientService;
 		}
 
-		[HttpGet]
+		[HttpGet("GetAll")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetDishDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -44,7 +44,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("GetById/{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetDishDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -66,7 +66,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPost]
+		[HttpPost("Add")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(SaveDishDto))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -93,7 +93,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPut]
+		[HttpPut("Edit")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -116,7 +116,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 			}
 		}
-		[HttpDelete("{id}")]
+		[HttpDelete("Delete/{id}")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 

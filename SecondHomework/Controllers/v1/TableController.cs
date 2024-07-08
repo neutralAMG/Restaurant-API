@@ -17,11 +17,11 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			_tableService = tableService;
 		}
 
-		[HttpGet]
+		[HttpGet("GetAll")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTableDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		[Authorize(Roles = "Admin,waiter")]
+		[Authorize(Roles ="Admin,waiter")]
 		public async Task<IActionResult> GetAll()
 		{
 			Result<List<GetTableDto>> TableResult = await _tableService.GetAllAsync();
@@ -42,7 +42,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("GetById{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTableDto))]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -65,7 +65,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPut("{id}")]
+		[HttpPut("Edit{id}")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[Authorize(Roles ="waiter")]
@@ -108,7 +108,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 			}
 		}
-		[HttpPost]
+		[HttpPost("Add")]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(SaveTableDto))]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -136,7 +136,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 			}
 		}
 
-		[HttpPut]
+		[HttpPut("Edit")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -160,7 +160,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 			}
 		}
-		[HttpPut("{id}")]
+		[HttpDelete("Delete/{id}")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 

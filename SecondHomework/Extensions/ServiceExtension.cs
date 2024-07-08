@@ -26,10 +26,7 @@ namespace SecondHomework.Api.Extensions
 					//}
 				});
 				options.DescribeAllParametersInCamelCase();
-				options.ResolveConflictingActions(apidefinition =>
-				{
-				  return apidefinition.First();
-				});
+
 				options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
 				{
 					Name = "Authorization",
@@ -58,7 +55,9 @@ namespace SecondHomework.Api.Extensions
 					  }, new List<string>()
 					}
 
-				});
+				});				
+				
+				
 			});
 		}
 

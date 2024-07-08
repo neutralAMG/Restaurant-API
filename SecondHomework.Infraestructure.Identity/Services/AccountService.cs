@@ -179,21 +179,24 @@ namespace SecondHomework.Infraestructure.Identity.Services
 
 		private async Task<JwtSecurityToken> GenerateJwtToken(AplicationUser user)
 		{
-			IList<Claim> userClaims = await _userManager.GetClaimsAsync(user);
-			IList<string> userRoles = await _userManager.GetRolesAsync(user);
+			var userClaims = await _userManager.GetClaimsAsync(user);
+			var  userRoles = await _userManager.GetRolesAsync(user);
 
-			List<Claim> roleClaims = userRoles.Select(r =>
+			List<Claim> roleClaims = new();
+			
+			foreach(var role in userRoles)
 			{
-				return new Claim("Roles", r);
+				roleClaims.Add(new Claim("Roles", role));
 
-			}).ToList();
+			};
 
 			var Claims = new[]{
 				new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
 				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
 				new Claim(JwtRegisteredClaimNames.Email, user.Email),
 				new Claim("uId", user.Id),
-			}.Union(userClaims).Union(roleClaims);
+			}
+			.Union(userClaims).Union(roleClaims);
 
 			SymmetricSecurityKey jwtSymeticSecurityKey = new(Encoding.UTF8.GetBytes(_jwtSettings.Key));
 
@@ -218,7 +221,7 @@ namespace SecondHomework.Infraestructure.Identity.Services
 
 			 rngCryptoServiceProvider.GetBytes(RandomByte);
 
-			return new ByteConverter().ConvertToString(RandomByte).Replace("-", "");
+			return  BitConverter.ToString(RandomByte).Replace("-", "");
 		}
 
 		private RefreshToken GenerateRefrehToken()
