@@ -41,9 +41,10 @@ namespace SecondHomework.Core.Application.Services
 				}
 				else if (Operation == (int)Enums.Operation.Delete)
 				{
-					await _orderDishService.DeleteAsync(saveOrderDishDto.Id);
+					await _orderDishService.DeleteAsync(saveOrderDishDto);
 					result.Message = "Dish was Deleted from the order";
 				}
+
 				Order orderToBeUpdate = await _orderRepository.GetByIdAsync(saveOrderDishDto.OrderId);
 
 				await _orderRepository.Update(orderToBeUpdate);

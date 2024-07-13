@@ -6,5 +6,6 @@ namespace SecondHomework.Core.Application.Interfaces.Repositories
 {
 	public interface IOrderDishRepository : IBaseRepository<OrderDish>
 	{
+		Task<OrderDish> GetByDishId(Guid dishId,  Guid OrderId);
 	}
 }

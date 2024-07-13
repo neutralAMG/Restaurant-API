@@ -106,9 +106,9 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 					return BadRequest();
 				}
 
-				Result<UpdateIngridientDto> OrderResult = await _ingredientService.UpdateAsync(updateDto);
+				Result<UpdateIngridientDto> IngredientResult = await _ingredientService.UpdateAsync(updateDto);
 
-				return Ok();
+				return Ok(IngredientResult);
 			}
 			catch (Exception ex)
 			{

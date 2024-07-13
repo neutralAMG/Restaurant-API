@@ -53,7 +53,6 @@ namespace SecondHomework.Core.Application.Utils.Mapper
 			#region Ingridient mappings configuration profiles
 
 			CreateMap<Ingredient, GetIngridientDto>()
-			   .ForMember(desc => desc.DishIngridients, opt => opt.MapFrom(d => d.DishIngridients))
 			   .ReverseMap();
 
 			CreateMap<Ingredient, SaveIngridientDto>()

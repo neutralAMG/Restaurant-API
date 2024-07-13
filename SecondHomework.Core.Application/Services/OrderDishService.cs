@@ -21,5 +21,22 @@ namespace SecondHomework.Core.Application.Services
 			_orderDishRepository = orderDishRepository;
 			_mapper = mapper;
 		}
+
+		public async Task<Result<GetOrderDishDto>> DeleteAsync(SaveOrderDishDto saveDto)
+		{
+			Result<GetOrderDishDto> result = new();
+			try
+			{
+				OrderDish orderDishToBeDeleted = await _orderDishRepository.GetByDishId(saveDto.DishId, saveDto.OrderId);
+
+			 return	await DeleteAsync(orderDishToBeDeleted.Id);
+			}
+			catch
+			{
+				result.IsSucces = false;
+				result.Message = "Critical error deleting the dish from the order";
+				return result;	
+			}
+		}
 	}
 }

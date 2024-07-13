@@ -26,7 +26,6 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 
 	public record UpdateTableDto  : BaseTableDto
 	{
-		public int TableStateId { get; set; }
 		public Guid Id { get; set; }
 	}
 }

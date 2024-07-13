@@ -79,6 +79,7 @@ namespace SecondHomework.Infraestructure.Identity
 
 					OnChallenge = c =>
 					{
+						if(!c.Response.HasStarted)
 						c.HandleResponse();
 						c.Response.StatusCode = 401;
 						c.Response.ContentType = "application/json";

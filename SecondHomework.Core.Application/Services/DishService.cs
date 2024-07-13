@@ -42,7 +42,7 @@ namespace SecondHomework.Core.Application.Services
 				}
 				else if (Operation == (int)Enums.Operation.Delete)
 				{
-					await _dishIngridientService.DeleteAsync(saveDishIngredientDto.Id);
+					await _dishIngridientService.DeleteAsync(saveDishIngredientDto);
 					result.Message = "Ingredient was Deleted from the dish";
 				}
 

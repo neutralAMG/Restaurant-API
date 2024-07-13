@@ -50,6 +50,8 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 		public virtual async Task<Ingredient> Update(Ingredient entity)
 		{
+			if (!await ExistAsync(d => d.Id == entity.Id)) return null;
+
 			Ingredient IngredientToUpdate = await GetByIdAsync(entity.Id);
 			IngredientToUpdate.Name = entity.Name;
 

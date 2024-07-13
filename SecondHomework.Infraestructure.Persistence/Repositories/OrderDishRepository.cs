@@ -1,4 +1,5 @@
-﻿using SecondHomework.Core.Application.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using SecondHomework.Core.Application.Interfaces.Repositories;
 using SecondHomework.Core.Domain.Entities;
 using SecondHomework.Infraestructure.Persistence.Context;
 using SecondHomework.Infraestructure.Persistence.Core;
@@ -45,12 +46,14 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 		public virtual async Task<OrderDish> Save(OrderDish entity)
 		{
-
+			
 			return await base.Save(entity);
 		}
 
 		public virtual async Task<OrderDish> Update(OrderDish entity)
 		{
+			if (!await ExistAsync(d => d.Id == entity.Id)) return null;
+
 			OrderDish OrderDishToUpdate = await GetByIdAsync(entity.Id);
 
 			return await base.Update(OrderDishToUpdate);
@@ -60,6 +63,12 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 		{
 			OrderDish OrderDishToBeDelete = await GetByIdAsync(entity.Id);
 			return await base.Delete(OrderDishToBeDelete);
+
+		}
+
+		public async Task<OrderDish> GetByDishId(Guid dishId, Guid OrderId)
+		{
+			return await _context.OrderDishes.Where(d => d.DishId == dishId && d.OrderId == OrderId).FirstOrDefaultAsync();
 
 		}
 	}

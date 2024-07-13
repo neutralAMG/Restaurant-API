@@ -51,6 +51,8 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 		public virtual async Task<Table> Update(Table entity)
 		{
+			if (!await ExistAsync(d => d.Id == entity.Id)) return null;
+
 			Table TableToUpdate = await GetByIdAsync(entity.Id);
 
 			TableToUpdate.Description = entity.Description;

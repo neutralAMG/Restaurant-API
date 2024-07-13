@@ -53,6 +53,9 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 		public virtual async Task<Order> Update(Order entity)
 		{
+			if (!await ExistAsync(d => d.Id == entity.Id)) return null;
+
+
 			Order OrderToBeUpdate = await GetByIdAsync(entity.Id);
 
 			OrderToBeUpdate.SubAmount = OrderToBeUpdate.OrderDishes.Select(o => o.Dish.Price).Sum();

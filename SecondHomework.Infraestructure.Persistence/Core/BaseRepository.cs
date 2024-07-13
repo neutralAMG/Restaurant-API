@@ -15,7 +15,7 @@ namespace SecondHomework.Infraestructure.Persistence.Core
 			_entities = _context.Set<TEntity>();
 		}
 
-		public virtual async Task<bool> ExirsAsync(Func<TEntity, bool> filter)
+		public virtual async Task<bool> ExistAsync(Func<TEntity, bool> filter)
 		{
 			try
 			{

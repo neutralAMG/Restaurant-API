@@ -8,7 +8,7 @@ namespace SecondHomework.Core.Application.Core
 {
 	public interface IBaseRepository<TEntity> where TEntity : class
 	{
-		Task<bool> ExirsAsync(Func<TEntity, bool> filter);
+		Task<bool> ExistAsync(Func<TEntity, bool> filter);
 		Task<List<TEntity>> GetAllAsync();
 		Task<TEntity> GetByIdAsync(Guid id);
 		Task<TEntity> Save(TEntity entity);

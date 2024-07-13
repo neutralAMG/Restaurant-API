@@ -19,5 +19,22 @@ namespace SecondHomework.Core.Application.Services
 			_dishIngridientRepository = dishIngridientRepository;
 			_mapper = mapper;
 		}
+
+		public async Task<Result<GetDishIngridientDto>> DeleteAsync(SaveDishIngredientDto saveDto)
+		{
+			Result<GetDishIngridientDto> result = new();
+			try
+			{
+				DishIngridient dishIngridientToBeDeleted = await _dishIngridientRepository.GetByDishId(saveDto.DishId, saveDto.IngridientId);
+
+				return await DeleteAsync(dishIngridientToBeDeleted.Id);
+			}
+			catch
+			{
+				result.IsSucces = false;
+				result.Message = "Critical error deleting the ingridient from the dish";
+				return result;
+			}
+		}
 	}
 }

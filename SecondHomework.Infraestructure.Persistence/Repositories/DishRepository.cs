@@ -21,7 +21,7 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 			{
 				return  await _context.Dishes
 					.Include(o => o.DishCategory)
-					.Include(o => o.DishIngridients).ThenInclude(o => o.Dish).ToListAsync();
+					.Include(o => o.DishIngridients).ToListAsync();
 			}
 			catch
 			{
@@ -35,7 +35,7 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 			{
 				return await _context.Dishes
 					.Include(o => o.DishCategory)
-					.Include(o => o.DishIngridients).ThenInclude(o => o.Dish)
+					.Include(o => o.DishIngridients)
 					.Where(t => t.Id == id).FirstOrDefaultAsync();
 			}
 			catch
@@ -52,6 +52,8 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 		public virtual async Task<Dish> Update(Dish entity)
 		{
+			if (!await ExistAsync(d => d.Id == entity.Id)) return null;
+
 			Dish DishToUpdate = await GetByIdAsync(entity.Id);
 
 		 return	await base.Update(DishToUpdate);

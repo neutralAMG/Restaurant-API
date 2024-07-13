@@ -7,6 +7,7 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 	public record BaseOrderDishDto
 	{		
 		public Guid DishId { get; set; }
+		public Guid OrderId { get; set; }
 	}
 	public record GetOrderDishDto 
 	{
@@ -17,12 +18,11 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 
 	public record SaveOrderDishDto : BaseOrderDishDto
 	{
-		public Guid OrderId { get; set; }
-		public Guid Id { get; set; }
+	
 	}
 	public record UpdateOrderDishDto : BaseOrderDishDto
 	{
-		public Guid Id { get; set; }
+		
 	}
 
 }

@@ -7,5 +7,6 @@ namespace SecondHomework.Core.Application.Interfaces.Contracts
 {
 	public interface IOrderDishService : IBaseService<GetOrderDishDto, SaveOrderDishDto, UpdateOrderDishDto, OrderDish>
 	{
+	 Task<Result<GetOrderDishDto>> DeleteAsync(SaveOrderDishDto saveDto);
 	}
 }
