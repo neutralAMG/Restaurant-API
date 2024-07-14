@@ -38,5 +38,6 @@ namespace SecondHomework.Core.Application.Services
 				return result;	
 			}
 		}
+
 	}
 }

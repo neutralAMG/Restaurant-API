@@ -21,7 +21,7 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 			{
 				return  await _context.Dishes
 					.Include(o => o.DishCategory)
-					.Include(o => o.DishIngridients).ToListAsync();
+					.Include(o => o.DishIngridients).ThenInclude( i =>  i.Ingredient).ToListAsync();
 			}
 			catch
 			{
@@ -35,7 +35,7 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 			{
 				return await _context.Dishes
 					.Include(o => o.DishCategory)
-					.Include(o => o.DishIngridients)
+					.Include(o => o.DishIngridients).ThenInclude(i => i.Ingredient)
 					.Where(t => t.Id == id).FirstOrDefaultAsync();
 			}
 			catch

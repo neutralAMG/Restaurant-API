@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SecondHomework.Core.Application.Dtos.Account;
 using SecondHomework.Core.Application.Interfaces.Contracts;
 
@@ -28,6 +29,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers
 		}
 
 		[HttpPost("RegisterAdminUser")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> RegisterAdminUserAsync(RegisterRequest request)
 		{
 			return Ok(await _accountService.RegisterAdminUserAsync(request));

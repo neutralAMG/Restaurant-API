@@ -17,7 +17,7 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 		public string Description { get; set; }
 		public GetTableStateDto TableState { get; set; }
 
-		public List<GetOrderDto> Orders { get; set; }
+	//	public List<GetOrderDto> Orders { get; set; }
 	}
 
 	public record SaveTableDto : BaseTableDto

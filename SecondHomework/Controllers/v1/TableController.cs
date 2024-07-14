@@ -152,7 +152,7 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 				Result<UpdateTableDto> TableResult = await _tableService.UpdateAsync(updateDto);
 
-				return Ok();
+				return Ok(TableResult);
 			}
 			catch (Exception ex)
 			{

@@ -57,7 +57,7 @@ namespace SecondHomework.Infraestructure.Persistence.Repositories
 
 			TableToUpdate.Description = entity.Description;
 			TableToUpdate.AmountOfPeople = entity.AmountOfPeople;
-		 return	await base.Update(entity);
+		 return	await base.Update(TableToUpdate);
 		}
 
 		public virtual async Task<bool> Delete(Table entity)

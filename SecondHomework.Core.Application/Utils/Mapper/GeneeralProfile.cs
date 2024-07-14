@@ -14,7 +14,6 @@ namespace SecondHomework.Core.Application.Utils.Mapper
 
 			CreateMap<Dish, GetDishDto>()
 				.ForMember(desc => desc.DishCategory, opt => opt.MapFrom(d => d.DishCategory))
-				.ForMember(desc => desc.OrderDishes, opt => opt.MapFrom(opt => opt.OrderDishes))
 				.ReverseMap()
 				.ForMember(desc => desc.DishCategoryId, opt => opt.Ignore());
 
@@ -91,7 +90,6 @@ namespace SecondHomework.Core.Application.Utils.Mapper
 
 			CreateMap<Table, GetTableDto>()
 			   .ForMember(desc => desc.TableState, opt => opt.MapFrom(d => d.TableState))
-			   .ForMember(desc => desc.Orders, opt => opt.MapFrom(opt => opt.Orders))
 			   .ReverseMap()
 			   .ForMember(desc => desc.TableStateId, opt => opt.Ignore());
 

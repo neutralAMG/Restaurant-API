@@ -20,7 +20,6 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 		public int AmountOfPeople { get; set; }
 		public GetDishCategoryDto DishCategory { get; set; }
 		public List<GetDishIngridientDto> DishIngridients { get; set; }
-		public List<GetOrderDishDto> OrderDishes { get; set; }
 	}
 	public record SaveDishDto : BaseDishDto
 	{

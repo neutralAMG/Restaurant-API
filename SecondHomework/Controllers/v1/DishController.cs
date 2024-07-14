@@ -113,6 +113,10 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 				Result<SaveDishDto> DishResult = await _dishService.UpdateDishAsync(operation, saveDto);
 
+				if (!DishResult.IsSucces)
+				{
+					return Ok(DishResult);
+				}
 				return Ok(DishResult);
 			}
 			catch (Exception ex)

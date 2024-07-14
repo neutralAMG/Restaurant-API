@@ -7,8 +7,6 @@ namespace SecondHomework.Core.Application.Dtos.EntitiesDtos
 {
 	public record BaseOrderDto
 	{		
-		public double SubAmount { get; set; }
-		public bool IsCompleted { get; set; }
 
 	}
 	public record GetOrderDto 

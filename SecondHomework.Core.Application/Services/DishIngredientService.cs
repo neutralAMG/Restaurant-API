@@ -36,5 +36,16 @@ namespace SecondHomework.Core.Application.Services
 				return result;
 			}
 		}
+
+		public override async Task<Result<SaveDishIngredientDto>> SaveAsync(SaveDishIngredientDto entity)
+		{
+			Result< SaveDishIngredientDto > result = new();
+			if ( await _dishIngridientRepository.ExistAsync(d => d.DishId == entity.DishId && d.IngridientId == entity.IngridientId)) {
+				result.IsSucces = false;
+				result.Message = "The dish already has that ingridient";
+				return result;	
+			}
+		   return await base.SaveAsync(entity);
+		}
 	}
 }
