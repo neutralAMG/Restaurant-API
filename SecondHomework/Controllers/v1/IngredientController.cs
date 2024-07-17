@@ -116,23 +116,6 @@ namespace SecondHomework.Presentation.WebApi.Controllers.v1
 
 			}
 		}
-		[HttpDelete("Delete/{id}")]
-		[ProducesResponseType(StatusCodes.Status204NoContent)]
-		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-		public async Task<IActionResult> Delete(Guid id)
-		{
-			try
-			{
-				Result<GetIngridientDto> OrderResult = await _ingredientService.DeleteAsync(id);
-
-				return NoContent();
-			}
-			catch (Exception ex)
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-
-			}
-		}
 	}
 }
